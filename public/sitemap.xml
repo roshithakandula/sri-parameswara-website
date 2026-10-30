@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  PLACEHOLDER DOMAIN. Before launch, replace every
+  "https://www.your-domain-here.example" below with the real website address
+  (use Find and Replace), then submit this file in Google Search Console.
+-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://www.your-domain-here.example/</loc>
+  </url>
+  <url>
+    <loc>https://www.your-domain-here.example/about</loc>
+  </url>
+  <url>
+    <loc>https://www.your-domain-here.example/information</loc>
+  </url>
+  <url>
+    <loc>https://www.your-domain-here.example/contact</loc>
+  </url>
+  <url>
+    <loc>https://www.your-domain-here.example/safety-legal</loc>
+  </url>
+</urlset>

@@ -1,0 +1,158 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------
+   Design tokens (Tailwind v4 reads these and creates utilities such as
+   bg-navy-950, text-gold-300, font-display, etc.)
+   ------------------------------------------------------------------ */
+@theme {
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-display: "Playfair Display Variable", Georgia, "Times New Roman", serif;
+
+  --color-navy-950: #0a1128;
+  --color-navy-900: #0f1b3d;
+  --color-navy-800: #18285a;
+
+  --color-gold-500: #c9a227;
+  --color-gold-300: #e6c96b;
+  --color-gold-700: #8a6d12;
+
+  --color-ember-500: #e8742a;
+
+  --color-cream-50: #fbf8f1;
+  --color-ink-700: #2b3556;
+  --color-ink-500: #4a5578;
+}
+
+/* ------------------------------------------------------------------
+   Base styles
+   ------------------------------------------------------------------ */
+@layer base {
+  html {
+    scroll-padding-top: 5rem;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
+  body {
+    margin: 0;
+    background-color: var(--color-cream-50);
+    color: var(--color-ink-700);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    color: var(--color-navy-900);
+    line-height: 1.2;
+    text-wrap: balance;
+  }
+
+  /* Keyboard focus: dark ring on light areas, light-gold ring on dark areas */
+  :focus-visible {
+    outline: 3px solid var(--color-navy-800);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  .on-dark :focus-visible,
+  .on-dark:focus-visible {
+    outline-color: var(--color-gold-300);
+  }
+}
+
+/* ------------------------------------------------------------------
+   Reusable layout and decoration helpers
+   ------------------------------------------------------------------ */
+@utility container-page {
+  width: 100%;
+  max-width: 72rem;
+  margin-inline: auto;
+  padding-inline: 1rem;
+
+  @media (min-width: 640px) {
+    padding-inline: 1.5rem;
+  }
+  @media (min-width: 1024px) {
+    padding-inline: 2rem;
+  }
+}
+
+@utility section-space {
+  padding-block: 4rem;
+
+  @media (min-width: 1024px) {
+    padding-block: 6rem;
+  }
+}
+
+/* Soft dotted pattern for dark sections */
+@utility pattern-dots {
+  background-image: radial-gradient(circle, rgb(230 201 107 / 0.18) 1px, transparent 1.5px);
+  background-size: 28px 28px;
+}
+
+/* Diamond lattice inspired by traditional Indian jaali work */
+@utility pattern-lattice {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56' viewBox='0 0 56 56'%3E%3Cpath d='M28 4l24 24-24 24L4 28z' fill='none' stroke='%23E6C96B' stroke-opacity='0.14' stroke-width='1'/%3E%3C/svg%3E");
+  background-size: 56px 56px;
+}
+
+/* ------------------------------------------------------------------
+   Motion (all of it is switched off for reduced-motion visitors)
+   ------------------------------------------------------------------ */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@layer components {
+  .fade-up {
+    animation: fade-up 0.7s ease-out both;
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(14px);
+    transition:
+      opacity 0.6s ease-out,
+      transform 0.6s ease-out;
+  }
+
+  .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}

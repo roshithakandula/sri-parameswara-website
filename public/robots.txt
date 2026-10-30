@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# When the real domain is known, replace the placeholder below and remove the leading "#".
+# Sitemap: https://www.your-domain-here.example/sitemap.xml
